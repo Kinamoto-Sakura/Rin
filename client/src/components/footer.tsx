@@ -56,11 +56,7 @@ function Footer() {
                     <ThemeButton mode='dark' current={modeState} label="Toggle dark mode" icon="ri-moon-line" onClick={setMode} /></div>
                     <p className='text-sm text-neutral-500 font-normal link-line text-center'>
                 {/* 添加站点访问量统计代码 */}
-                 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <br/>         
+
                 {/*添加备案信息*/}
 <br/> <a className='hover:underline' href="https://beian.miit.gov.cn" target="_blank">冀ICP备2024090725号</a><br/><a className='hover:underline' href="https://beian.mps.gov.cn/#/query/webSearch?code=13073302000040" target="_blank"><img src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png" alt="备案图标" style={{ display: 'inline-block', width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />冀公网安备13073302000040</a><br/> 
                     <span onDoubleClick={() => {
