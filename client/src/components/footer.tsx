@@ -6,6 +6,7 @@ import { siteName } from '../utils/constants';
 import { useTranslation } from "react-i18next";
 import { useLoginModal } from '../hooks/useLoginModal';
 
+
 type ThemeMode = 'light' | 'dark' | 'system';
 function Footer() {
     const { t } = useTranslation()
@@ -20,6 +21,12 @@ function Footer() {
         setModeState(mode);
         setMode(mode);
     }, [])
+    useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+    script.async = true;
+    document.body.appendChild(script);
+    }, []);
 
 
     const setMode = (mode: ThemeMode) => {
