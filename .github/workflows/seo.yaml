@@ -24,11 +24,11 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
 
-      - name: Set up Puppeteer
+      - name: Set up puppeteer@22.15.0
         run: |
           sudo apt-get update
           sudo apt-get install -y libgbm-dev
-          npx puppeteer browsers install chrome
+          npx puppeteer@22.15.0 browsers install chrome
 
       - name: Run script
         env: # Or as an environment variable
