@@ -48,14 +48,14 @@ function Footer() {
             </Helmet>
             <div className="flex flex-col mb-8 space-y-2 justify-center items-center t-primary ani-show">
                 {footerHtml && <div dangerouslySetInnerHTML={{ __html: footerHtml }} />}
-                //移动夜间模式位置
+                <!--移动夜间模式位置-->
                     <div className="w-fit-content inline-flex rounded-full border border-zinc-200 p-[3px] dark:border-zinc-700">
                     <ThemeButton mode='light' current={modeState} label="Toggle light mode" icon="ri-sun-line" onClick={setMode} />
                     <ThemeButton mode='system' current={modeState} label="Toggle system mode" icon="ri-computer-line" onClick={setMode} />
                     <ThemeButton mode='dark' current={modeState} label="Toggle dark mode" icon="ri-moon-line" onClick={setMode} />
                 </div>
                                 <p className='text-sm text-neutral-500 font-normal link-line text-center'>
-                //添加备案
+
             <br/> <a className='hover:underline' href="https://beian.miit.gov.cn" target="_blank">冀ICP备2024090725号</a><br/><a className='hover:underline' href="https://beian.mps.gov.cn/#/query/webSearch?code=13073302000040" target="_blank"><img src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png" alt="备案图标" style={{ display: 'inline-block', width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />冀公网安备13073302000040</a><br/> 
                     <span onDoubleClick={() => {
                         if(doubleClickTimes >= 2){ // actually need 3 times doubleClick
