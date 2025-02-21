@@ -4,7 +4,7 @@ import { ClientConfigContext } from '../state/config';
 import { Helmet } from "react-helmet";
 import { siteName } from '../utils/constants';
 import { useTranslation } from "react-i18next";
-import { useLoginModal } from '../hooks/useLoginModal';
+import { fetchCountAndUpdateUI } from '../utils/count';
 
 type ThemeMode = 'light' | 'dark' | 'system';
 function Footer() {
@@ -12,13 +12,11 @@ function Footer() {
     const [modeState, setModeState] = useState<ThemeMode>('system');
     const config = useContext(ClientConfigContext);
     const footerHtml = config.get<string>('footer');
-    const loginEnabled = config.get<boolean>('login.enabled');
-    const [doubleClickTimes, setDoubleClickTimes] = useState(0);
-    const { LoginModal, setIsOpened } = useLoginModal()
     useEffect(() => {
         const mode = localStorage.getItem('theme') as ThemeMode || 'system';
         setModeState(mode);
         setMode(mode);
+        fetchCountAndUpdateUI()
     }, [])
 
     const setMode = (mode: ThemeMode) => {
@@ -52,21 +50,26 @@ function Footer() {
                     <ThemeButton mode='light' current={modeState} label="Toggle light mode" icon="ri-sun-line" onClick={setMode} />
                     <ThemeButton mode='system' current={modeState} label="Toggle system mode" icon="ri-computer-line" onClick={setMode} />
                     <ThemeButton mode='dark' current={modeState} label="Toggle dark mode" icon="ri-moon-line" onClick={setMode} />
-                </div>
-                //添加备案信息
-                <br/> <a className='hover:underline' href="https://beian.miit.gov.cn" target="_blank">冀ICP备2024090725号</a> <br/> <a className='hover:underline' href="https://beian.mps.gov.cn/#/query/webSearch?code=13073302000040" target="_blank"><img src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png" alt="备案图标" style={{ display: 'inline-block', width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} /> 冀公网安备13073302000040</a> <br/>
-                <p className='text-sm text-neutral-500 font-normal link-line'>
-                    <span onDoubleClick={() => {
-                        if(doubleClickTimes >= 2){ // actually need 3 times doubleClick
-                            setDoubleClickTimes(0)
-                            if(!loginEnabled) {
-                                setIsOpened(true)
-                            }
-                        } else {
-                            setDoubleClickTimes(doubleClickTimes + 1)
-                        }
-                    }}>
-                        © 2024 Powered by <a className='hover:underline' href="https://github.com/openRin/Rin" target="_blank">Rin</a>
+                   </div>
+                <p className='text-sm text-neutral-500 font-normal text-center'>
+                    {t('count.site_pv')} <span id="site_pv"></span> | {t('count.site_uv')} <span id="site_uv"></span>
+                </p>
+                <p className='text-sm text-neutral-500 font-normal link-line text-center'>
+                    <br/> <a className='hover:underline' href="https://beian.miit.gov.cn" target="_blank">冀ICP备2024090725号</a>
+<br/> 
+<a className='hover:underline' href="https://beian.mps.gov.cn/#/query/webSearch?code=13073302000040" target="_blank">
+  <img 
+    src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png" 
+    alt="备案图标" 
+    style={{ display: 'inline-block', width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} 
+  />
+  冀公网安备13073302000040
+</a>
+
+
+                    <br/> 
+                    <span>
+                        © 2024 <a className='hover:underline' href="https://kafuchino.top" target="_blank">Chino</a>
                     </span>
                     {config.get<boolean>('rss') && <>
                         <Spliter />
@@ -93,15 +96,16 @@ function Footer() {
                                         JSON
                                     </a>
                                 </p>
-
-                            </div>
+                        </div>
                         </Popup>
-                    </>}
-                </p>
-
-            </div>
-            <LoginModal />
+                    </>}                    
+                     <br/>
+                    <a className='hover:underline' href="https://icp.gov.moe/?keyword=20243666" target="_blank"><span className="icon-MOE"/>萌ICP备20243666号</a> | <a className='hover:underline' href="https://travel.moe/go.html?travel=on" title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" target="_blank">异次元之旅</a>
+                    <br/>Powered by <a className='hover:underline' href="https://github.com/kafuneri/Rin" target="_blank">Rin</a> & <a className='hover:underline' href="https://www.cloudflare.com" target="_blank">Cloudflare</a>
+                    </p>               
+            </div>            
         </footer>
+
     );
 }
 
