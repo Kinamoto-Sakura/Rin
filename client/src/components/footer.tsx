@@ -76,7 +76,7 @@ function Footer() {
                             setDoubleClickTimes(doubleClickTimes + 1)
                         }
                     }}>
-                        © 2024 <a className='hover:underline' href="https://kafuchino" target="_blank">Chino</a>
+                        © 2024 <a className='hover:underline' href="https://kafuchino.top" target="_blank">Chino</a>
                     </span>
                     {config.get<boolean>('rss') && <>
                         <Spliter />
