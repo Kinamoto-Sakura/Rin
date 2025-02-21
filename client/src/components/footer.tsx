@@ -48,6 +48,11 @@ function Footer() {
             </Helmet>
             <div className="flex flex-col mb-8 space-y-2 justify-center items-center t-primary ani-show">
                 {footerHtml && <div dangerouslySetInnerHTML={{ __html: footerHtml }} />}
+                    <div className="w-fit-content inline-flex rounded-full border border-zinc-200 p-[3px] dark:border-zinc-700">
+                    <ThemeButton mode='light' current={modeState} label="Toggle light mode" icon="ri-sun-line" onClick={setMode} />
+                    <ThemeButton mode='system' current={modeState} label="Toggle system mode" icon="ri-computer-line" onClick={setMode} />
+                    <ThemeButton mode='dark' current={modeState} label="Toggle dark mode" icon="ri-moon-line" onClick={setMode} />
+                </div>
                 <p className='text-sm text-neutral-500 font-normal link-line'>
                     <span onDoubleClick={() => {
                         if(doubleClickTimes >= 2){ // actually need 3 times doubleClick
@@ -91,11 +96,7 @@ function Footer() {
                         </Popup>
                     </>}
                 </p>
-                <div className="w-fit-content inline-flex rounded-full border border-zinc-200 p-[3px] dark:border-zinc-700">
-                    <ThemeButton mode='light' current={modeState} label="Toggle light mode" icon="ri-sun-line" onClick={setMode} />
-                    <ThemeButton mode='system' current={modeState} label="Toggle system mode" icon="ri-computer-line" onClick={setMode} />
-                    <ThemeButton mode='dark' current={modeState} label="Toggle dark mode" icon="ri-moon-line" onClick={setMode} />
-                </div>
+
             </div>
             <LoginModal />
         </footer>
